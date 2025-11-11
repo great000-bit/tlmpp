@@ -53,7 +53,7 @@ const Navbar = () => {
             ))}
             <ThemeToggle />
             <Button variant="hero" size="sm" onClick={() => navigate("/contact")}>
-              Join the Movement
+              Enroll Now
             </Button>
           </div>
 
@@ -88,7 +88,7 @@ const Navbar = () => {
                 <ThemeToggle />
               </div>
               <Button variant="hero" size="sm" className="w-full" onClick={() => { navigate("/contact"); setIsOpen(false); }}>
-                Join the Movement
+                Enroll Now
               </Button>
             </div>
           </div>
