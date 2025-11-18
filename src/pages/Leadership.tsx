@@ -38,81 +38,103 @@ const Leadership = () => {
   const [visibleCards, setVisibleCards] = useState<Set<number>>(new Set());
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   
-  const leaders: Leader[] = [
-    {
-      name: "TrustGod Ewuziem",
-      role: "Managing Director",
-      image: trustgodImage,
-      bio: "Visionary tech leader and innovation strategist passionate about using technology to empower communities",
-      fullBio: "TrustGod is a visionary tech leader, innovation strategist, and social impact advocate passionate about using technology to empower communities. He is the Founder and CEO of Nexa Trux Technologies, a digital solutions company creating scalable platforms across Africa.\n\nWith a strong background in software development, digital strategy, and project leadership, he has contributed to several mission-driven initiatives, bridging technology, purpose, and social transformation.\n\nTrustGod serves as the MD The Light Mission with the conviction that faith and innovation can rebuild communities, transform economies, and shape the next generation of changemakers.",
-      linkedin: "https://linkedin.com/in/trustgod-ewuziem",
-      portfolio: "https://trustgodewuziem.nexatrux.com"
-    },
-    {
-      name: "Mrs. Peace Kings",
-      role: "National Youth Leader, HLCC Youths Nigeria | Director, Leadership & Spiritual Empowerment",
-      image: peaceImage,
-      bio: "Dynamic minister and transformational leader with a deep passion for mentorship, youth empowerment, and spiritual growth",
-      fullBio: "Mrs. Peace Kings is a dynamic minister and transformational leader with a deep passion for mentorship, youth empowerment, and spiritual growth. As the National Youth Leader of HLCC Youths Nigeria, she has inspired countless young people to live purposefully and lead with conviction.\n\nThrough her role as Director of Leadership and Spiritual Empowerment, she continues to nurture emerging leaders, promote faith-driven excellence, and champion initiatives that build character, integrity, and service in the next generation.\n\nHer ministry has been instrumental in raising spiritually mature leaders who are making a difference in their communities.",
-      linkedin: "https://linkedin.com/in/peace-kings"
-    },
-    {
-      name: "Chimezie Promise Munachiso (Amb. Muna)",
-      role: "Director, Creative and Operations",
-      image: chimezieImage,
-      bio: "Multi-talented creative visionary, gospel minister, and digital innovator building thriving creative brands",
-      fullBio: "Amb. Muna is a multi-talented creative visionary, gospel minister, and digital innovator from Imo State, Nigeria. He is the founder of Muna Sax Studio, a thriving creative brand providing top-tier design, photography, and digital media solutions.\n\nCurrently pursuing a degree in Biochemistry at Kingsley Ozumba Mbadiwe University, he has built a strong reputation as a purpose-driven creative professional, merging art, media, and ministry to inspire transformation.\n\nAs a gospel minister, Amb. Muna uses his platform to spread hope, faith, and positive influence through sound, visuals, and creative expression. His leadership at TLM reflects creativity anchored in purpose, service, and excellence.",
-      linkedin: "https://linkedin.com/in/chimezie-munachiso"
-    },
-    {
-      name: "Viscount [Full Name TBD]",
-      role: "Director of Partnership",
-      image: viscountImage,
-      bio: "Forward-thinking technologist and strategic innovator building solutions that drive real-world impact",
-      fullBio: "Viscount is a forward-thinking technologist and strategic innovator with a passion for building solutions that drive real-world impact. With expertise in digital systems, project coordination, and innovation management, he brings both creativity and analytical insight into every collaboration.\n\nAs Director of Partnership, he plays a pivotal role in fostering sustainable relationships, developing collaborative frameworks, and aligning strategic goals to advance the organization's mission.\n\nHis vision is centered on innovation that empowers people and transforms communities.",
-      linkedin: "https://linkedin.com/in/viscount-tlm"
-    },
-    {
-      name: "Great Emman-wori",
-      role: "Tech & Innovation Lead",
-      image: greatImage,
-      bio: "Visionary technology strategist building scalable, human-centered digital solutions",
-      fullBio: "Great is a visionary technology strategist and creative systems thinker with a passion for building scalable, human-centered digital solutions. As the Tech & Innovation Lead, he spearheads the design, development, and implementation of forward-looking technologies that enhance efficiency and engagement.\n\nWith a strong background in web development, UI/UX design, and creative strategy, Great combines technical precision with aesthetic innovation to craft digital experiences that inspire and empower.\n\nHis leadership reflects a rare blend of creativity, excellence, and purposeful innovation.",
-      linkedin: "https://linkedin.com/in/great-emman-wori"
-    },
-    {
-      name: "Miracle Chinenye Amarachi (Phenomenon Erudite)",
-      role: "Community Manager",
-      image: miracleImage,
-      bio: "Purpose-driven creative and thought leader passionate about using words and strategy to inspire change",
-      fullBio: "Miracle Chinenye Amarachi, known by her brand name Phenomenon Erudite, is a purpose-driven creative and thought leader from Abia State, Nigeria. She is a certified Content Writer, Digital Marketer, Public Speaker, and Health Consultant passionate about using words and strategy to inspire change.\n\nAs the author of four impactful books, Miracle's work reflects a deep commitment to intellectual growth, empowerment, and transformation. Her brand, Phenomenon Erudite, embodies excellence, authenticity, and intellect—values she brings to every platform she manages.\n\nAs Community Manager, she fosters meaningful engagement, builds brand influence, and drives initiatives that connect creativity with purpose.",
-      linkedin: "https://linkedin.com/in/miracle-amarachi"
-    },
-    {
-      name: "Adebi Precious Ijeoma",
-      role: "Chief Financial Officer",
-      image: adebiImage,
-      bio: "Content and Creative Writer, Speaker, and Personal Development Strategist dedicated to helping people grow",
-      fullBio: "Adebi Precious Ijeoma is a passionate Content and Creative Writer, Speaker, and Personal Development Strategist dedicated to helping people grow with clarity, confidence, and purpose. She serves as a Content and Communication Specialist, using her expertise to strengthen brands, develop impactful messaging, and lead transformative initiatives.\n\nAs the founder of Prolific Skill Up and Growth Mentorship, she coaches young people to discover their voice, embrace personal evolution, and pursue excellence in every sphere.\n\nHer commitment to faith, creativity, and responsibility continues to inspire others toward purposeful living and growth.",
-      linkedin: "https://linkedin.com/in/adebi-precious"
-    },
-    {
-      name: "Beboyo Emmanuel",
-      role: "Chief Mentor",
-      image: beboyoImage,
-      bio: "Seasoned leader, creative writer, and visionary mentor with a heart for faith-based leadership",
-      fullBio: "Beboyo Emmanuel is a seasoned leader, creative writer, and visionary mentor with a heart for faith-based leadership and youth transformation. A devoted lover of God, he has held multiple leadership positions, including Campus President, where he built a legacy of impact, discipline, and innovation.\n\nAs Chief Mentor, he provides spiritual guidance, leadership counsel, and creative insight to nurture the next generation of changemakers.\n\nHis influence combines wisdom, humility, and a lifelong passion for empowering others to walk in purpose and excellence.",
-      linkedin: "https://linkedin.com/in/beboyo-emmanuel"
-    },
-    {
-      name: "Jefery [Last Name TBD]",
-      role: "Technical Lead & Media Communications",
-      image: null,
-      bio: "Skilled technical expert and media strategist specializing in digital communications and creative technology",
-      fullBio: "Jefery is a skilled technical expert and media strategist specializing in digital communications and creative technology. With a strong background in system management, audiovisual production, and media design, he ensures seamless integration of technology and storytelling across platforms.\n\nAs Technical Lead, he oversees technical operations, media infrastructure, and communication systems, driving excellence through innovation and precision.\n\nHis passion for digital excellence fuels his dedication to building systems that inform, engage, and inspire.",
-      linkedin: "https://linkedin.com/in/jefery-tlm"
-    },
-  ];
+const leaders: Leader[] = [
+  {
+    name: "TrustGod Ewuziem",
+    role: "Managing Director",
+    image: trustgodImage,
+    bio: "Visionary tech leader and innovation strategist with strong leadership experience across media, ministry, and digital transformation.",
+    fullBio:
+      "TrustGod Ewuziem is a visionary tech leader, innovation strategist, and social impact advocate passionate about using technology to empower communities. He is the Founder and CEO of Nexa Trux Technologies, a digital solutions company creating scalable platforms across Africa.\n\nWith a strong background in software development, digital strategy, and project leadership, TrustGod has contributed to several mission-driven initiatives, bridging technology, purpose, and social transformation.\n\nBeyond the tech space, he has an extensive leadership track record. He currently serves as the National Media Director of Holiness Living Christian Church (HLCC Nigeria), Media Director at Gateway International Church (GIC Aluu Satellite 2), and is a former Assistant Secretary General of NIMECHIE (UNIPORT Chapter).\n\nTrustGod serves as the Managing Director of The Light Mission with the conviction that faith and innovation can rebuild communities, transform economies, and shape the next generation of changemakers.",
+    linkedin: "https://linkedin.com/in/trustgod-ewuziem",
+    portfolio: "https://trustgodewuziem.nexatrux.com",
+  },
+
+
+  {
+    name: "Mrs. Peace Kings",
+    role:
+      "National Youth Leader, HLCC Youths Nigeria | Director, Leadership & Spiritual Empowerment",
+    image: peaceImage,
+    bio: "Founder of Kingswise Kulture & WeKeep Africa. A dynamic minister and transformational leader with a deep passion for mentorship, youth empowerment, and spiritual growth.",
+    fullBio:
+      "Mrs. Peace Kings is the founder of Kingswise Kulture and WeKeep Africa, two visionary platforms dedicated to leadership development, youth transformation, and community impact.\n\nShe is a dynamic minister and transformational leader with a deep passion for mentorship, youth empowerment, and spiritual growth. As the National Youth Leader of HLCC Youths Nigeria, she has inspired countless young people to live purposefully and lead with conviction.\n\nThrough her role as Director of Leadership and Spiritual Empowerment, she continues to nurture emerging leaders, promote faith-driven excellence, and champion initiatives that build character, integrity, and service in the next generation.\n\nHer ministry and leadership platforms have been instrumental in raising spiritually mature, influential leaders who are making a difference in their communities and beyond.",
+    linkedin: "https://linkedin.com/in/peace-kings",
+  },
+
+
+  {
+    name: "Chimezie Promise Munachiso (Amb. Muna)",
+    role: "Director, Creative and Operations",
+    image: chimezieImage,
+    bio: "Multi-talented creative visionary, gospel minister, and digital innovator building thriving creative brands",
+    fullBio:
+      "Amb. Muna is a multi-talented creative visionary, gospel minister, and digital innovator from Imo State, Nigeria. He is the founder of Muna Sax Studio, a thriving creative brand providing top-tier design, photography, and digital media solutions.\n\nCurrently pursuing a degree in Biochemistry at Kingsley Ozumba Mbadiwe University, he has built a strong reputation as a purpose-driven creative professional, merging art, media, and ministry to inspire transformation.\n\nAs a gospel minister, Amb. Muna uses his platform to spread hope, faith, and positive influence through sound, visuals, and creative expression. His leadership at TLM reflects creativity anchored in purpose, service, and excellence.",
+    linkedin: "https://linkedin.com/in/chimezie-munachiso",
+  },
+
+  {
+    name: "Chinenyeuba Ebuka Gideon",
+    role: "Director of Partnership",
+    image: viscountImage,
+    bio: "Strategic relationship builder, marketer, and emerging leader passionate about partnership-driven impact",
+    fullBio:
+      "Chinenyeuba Ebuka Gideon is a strategic relationship builder, marketer, and emerging leader passionate about partnership-driven impact. A graduate of Federal Polytechnic Nekede with both ND and HND in Marketing, he brings a strong blend of analytical, communication, and coordination skills.\n\nHe is a crypto enthusiast, a disciplined Forex trader, and a goal-oriented youth leader with a history of service in various capacities—including Bible Study Coordinator and Evangelism Coordinator.\n\nAs the Director of Partnership, Gideon leverages his leadership experience, marketing acumen, and people-oriented mindset to build meaningful alliances that support the mission and growth of The Light Mission.",
+    linkedin: "https://linkedin.com/in/chinenyeuba-ebuka-gideon",
+  },
+
+  {
+    name: "Great Emman-wori",
+    role: "Tech & Innovation Lead",
+    image: greatImage,
+    bio: "Visionary technology strategist building scalable, human-centered digital solutions",
+    fullBio:
+      "Great is a visionary technology strategist and creative systems thinker with a passion for building scalable, human-centered digital solutions. As the Tech & Innovation Lead, he spearheads the design, development, and implementation of forward-looking technologies that enhance efficiency and engagement.\n\nWith a strong background in web development, UI/UX design, and creative strategy, Great combines technical precision with aesthetic innovation to craft digital experiences that inspire and empower.\n\nHis leadership reflects a rare blend of creativity, excellence, and purposeful innovation.",
+    linkedin: "https://linkedin.com/in/great-emman-wori",
+  },
+
+  {
+    name: "Miracle Chinenye Amarachi (Phenomenon Erudite)",
+    role: "Community Manager",
+    image: miracleImage,
+    bio: "Purpose-driven creative and thought leader passionate about using words and strategy to inspire change",
+    fullBio:
+      "Miracle Chinenye Amarachi, known by her brand name Phenomenon Erudite, is a purpose-driven creative and thought leader from Abia State, Nigeria. She is a certified Content Writer, Digital Marketer, Public Speaker, and Health Consultant passionate about using words and strategy to inspire change.\n\nAs the author of four impactful books, Miracle's work reflects a deep commitment to intellectual growth, empowerment, and transformation. Her brand, Phenomenon Erudite, embodies excellence, authenticity, and intellect—values she brings to every platform she manages.\n\nAs Community Manager, she fosters meaningful engagement, builds brand influence, and drives initiatives that connect creativity with purpose.",
+    linkedin: "https://linkedin.com/in/miracle-amarachi",
+  },
+
+  {
+    name: "Adebi Precious Ijeoma",
+    role: "Chief Financial Officer",
+    image: adebiImage,
+    bio: "Content and Creative Writer, Speaker, and Personal Development Strategist dedicated to helping people grow",
+    fullBio:
+      "Adebi Precious Ijeoma is a passionate Content and Creative Writer, Speaker, and Personal Development Strategist dedicated to helping people grow with clarity, confidence, and purpose. She serves as a Content and Communication Specialist, using her expertise to strengthen brands, develop impactful messaging, and lead transformative initiatives.\n\nAs the founder of Prolific Skill Up and Growth Mentorship, she coaches young people to discover their voice, embrace personal evolution, and pursue excellence in every sphere.\n\nHer commitment to faith, creativity, and responsibility continues to inspire others toward purposeful living and growth.",
+    linkedin: "https://linkedin.com/in/adebi-precious",
+  },
+
+  {
+    name: "Beboyo Emmanuel",
+    role: "Chief Mentor",
+    image: beboyoImage,
+    bio: "Seasoned leader, creative writer, and visionary mentor with a heart for faith-based leadership",
+    fullBio:
+      "Beboyo Emmanuel is a seasoned leader, creative writer, and visionary mentor with a heart for faith-based leadership and youth transformation. A devoted lover of God, he has held multiple leadership positions—including Campus President—where he built a legacy of impact, discipline, and innovation.\n\nAs Chief Mentor, he provides spiritual guidance, leadership counsel, and creative insight to nurture the next generation of changemakers.\n\nHis influence combines wisdom, humility, and a lifelong passion for empowering others to walk in purpose and excellence.",
+    linkedin: "https://linkedin.com/in/beboyo-emmanuel",
+  },
+
+  {
+    name: "Mmeremikwu Jeffrey Udochukwu",
+    role: "Technical Lead & Media Communications",
+    image: jefferyImage,
+    bio: "Cinematographer, graphic designer, and media director transforming ideas into visuals that inspire.",
+    fullBio:
+      "Mmeremikwu Jeffrey Udochukwu is a skilled cinematographer, graphic designer, and media strategist from Orlu, Imo State. He currently serves as the Media Director at HLCC Orlu Branch, where he oversees visual communications, creative production, and media excellence.\n\nJeffery helps brands turn ideas into visuals that people can feel—leveraging storytelling, design, and cinematography to create impactful experiences.\n\nHe is also a dedicated forex trader with a long-term mindset, focused on building skill, managing risk, and improving consistently with every single trade.\n\nAs Technical Lead & Media Communications for The Light Mission, Jeffery brings precision, creativity, and technical excellence to the organization's digital operations and media systems.",
+    linkedin: "https://linkedin.com/in/jefery-tlm",
+  },
+
+];
+
 
   // Intersection Observer for scroll-triggered staggered animations
   useEffect(() => {
